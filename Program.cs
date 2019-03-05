@@ -40,9 +40,28 @@ namespace Kacper
 
                 if (reversedLine == secondLine)
                 {
-                    Console.WriteLine("Tak");
+                    string[] resultYes = { "Yes" };
+                    Console.WriteLine("Yes");
+
+                    string fileExtension = ".out";
+                    int elementLength = element.ToString().Length;
+                    int elementLengthWithoutLastThreeCharacters = elementLength - 3;
+                    string elementSplitedName = element.Substring(0, elementLengthWithoutLastThreeCharacters);
+                    string file = String.Format("{0}{1}", elementSplitedName, fileExtension);
+                    System.IO.File.WriteAllLines(@file, resultYes);
                 }
-                else Console.WriteLine("Nie");
+                else
+                {
+                    string[] resultNo = { "No" };
+                    Console.WriteLine("No");
+
+                    string fileExtension = ".out";
+                    int elementLength = element.ToString().Length;
+                    int elementLengthWithoutLastThreeCharacters = elementLength - 3;
+                    string elementSplitedName = element.Substring(0, elementLengthWithoutLastThreeCharacters);
+                    string file = String.Format("{0}{1}", elementSplitedName, fileExtension);
+                    System.IO.File.WriteAllLines(@file, resultNo);
+                }
 
             }
 
