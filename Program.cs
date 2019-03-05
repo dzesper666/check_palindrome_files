@@ -9,8 +9,8 @@ namespace Kacper
         {
 
             int firstNumber;
-
-            string[] filesArray = Directory.GetFiles(@"C:\Users\ksarama\Documents\Projects\Kacper\files");
+            string path = @"C:\Users\ksarama\Documents\Projects\Kacper\files";
+            string[] filesArray = Directory.GetFiles(path);
 
             foreach (string element in filesArray)
             {
@@ -40,29 +40,18 @@ namespace Kacper
 
                 if (reversedLine == secondLine)
                 {
-                    string[] resultYes = { "Yes" };
                     Console.WriteLine("Yes");
-
-                    string fileExtension = ".out";
-                    int elementLength = element.ToString().Length;
-                    int elementLengthWithoutLastThreeCharacters = elementLength - 3;
-                    string elementSplitedName = element.Substring(0, elementLengthWithoutLastThreeCharacters);
-                    string file = String.Format("{0}{1}", elementSplitedName, fileExtension);
+                    string[] resultYes = { "Yes" };
+                    string file = createPath(element);
                     System.IO.File.WriteAllLines(@file, resultYes);
                 }
                 else
                 {
-                    string[] resultNo = { "No" };
                     Console.WriteLine("No");
-
-                    string fileExtension = ".out";
-                    int elementLength = element.ToString().Length;
-                    int elementLengthWithoutLastThreeCharacters = elementLength - 3;
-                    string elementSplitedName = element.Substring(0, elementLengthWithoutLastThreeCharacters);
-                    string file = String.Format("{0}{1}", elementSplitedName, fileExtension);
+                    string[] resultNo = { "No" };
+                    string file = createPath(element);
                     System.IO.File.WriteAllLines(@file, resultNo);
                 }
-
             }
 
             string readLine(string element, int number)
@@ -99,6 +88,15 @@ namespace Kacper
                     return true;
                 }
                 return false;
+            }
+
+            string createPath(string element)
+            {
+                string fileExtension = ".out";
+                int elementLength = element.ToString().Length;
+                int elementLengthWithoutLastThreeCharacters = elementLength - 3;
+                string elementSplitedName = element.Substring(0, elementLengthWithoutLastThreeCharacters);
+                return String.Format("{0}{1}", elementSplitedName, fileExtension);
             }
         }
     }
